@@ -9,7 +9,10 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: bottom;
-  }
+      display: flex;
+      flex-direction: column;
+     justify-content: space-between;
+}
   .blank-body{
       flex-basis: 70%;
       background-color: rgb(253, 253, 253);
