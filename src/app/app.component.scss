@@ -11,10 +11,15 @@
       background-position: bottom;
       display: flex;
       flex-direction: column;
-     justify-content: space-between;
+      justify-content: space-between;
+      margin-bottom: 20px;
 }
   .blank-body{
       flex-basis: 70%;
       background-color: rgb(253, 253, 253);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items:center;
   }
 }
