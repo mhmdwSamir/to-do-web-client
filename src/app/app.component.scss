@@ -1,16 +1,16 @@
-.layOut{
+.lay-out{
     display: flex;
     flex-direction: column;
     height: 100vh;
     // max-height: 100vh; with it flexbasis dont work
-  .backCover{
+  .back-cover{
       flex-basis: 50%;
       background-image: linear-gradient(to right,rgba(188, 82, 230, 0.8) , rgba(157, 135, 233, 0.8)), url("../assets/mountain-cover-2.jpg"); 
       background-repeat: no-repeat;
       background-size: cover;
       background-position: bottom;
   }
-  .blankBody{
+  .blank-body{
       flex-basis: 70%;
       background-color: rgb(253, 253, 253);
   }
