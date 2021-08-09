@@ -7,6 +7,7 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoTaskComponent } from './components/todo-task/todo-task.component';
 import { TodoStatsComponent } from './components/todo-stats/todo-stats.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     TodoTaskComponent,
     TodoStatsComponent,
     SignUpComponent,
+    LoginComponent,
    
   ],
   imports: [
