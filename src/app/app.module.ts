@@ -6,6 +6,7 @@ import {SharedModule} from  "./shared/shared.module";
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoTaskComponent } from './components/todo-task/todo-task.component';
 import { TodoStatsComponent } from './components/todo-stats/todo-stats.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TodoStatsComponent } from './components/todo-stats/todo-stats.component
     TodoFormComponent,
     TodoTaskComponent,
     TodoStatsComponent,
+    SignUpComponent,
    
   ],
   imports: [
