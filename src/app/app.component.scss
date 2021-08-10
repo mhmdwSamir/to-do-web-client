@@ -1,27 +1,5 @@
-.lay-out{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    // padding: 10px;
-    // max-height: 100vh; with it flexbasis dont work
-  .back-cover{
-      flex-basis: 40%;
-      background-image: linear-gradient(to right,rgba(188, 82, 230, 0.8) , rgba(157, 135, 233, 0.8)), url("../assets/mountain-cover-2.jpg"); 
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: bottom;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-bottom: 20px;
-}
-  .blank-body{
-      flex-basis: 60%;
-      background-color: rgb(253, 253, 253);
-      display: flex;
-      flex-direction: column;
-      // justify-content: space-between;
-      align-items:center;
-      margin-bottom: 10px;
-  }
+app-nav-bar {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
 }
