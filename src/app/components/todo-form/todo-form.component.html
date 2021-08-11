@@ -1,7 +1,12 @@
 <div class="todo-form">
-    <form class="form-content">
-        <input class="task-input" type="search"/>
-        <!-- <input class="task-input-btn" type="button" value="Add Task"/> -->
-        <button class="task-input-btn"> Add Task </button>
-    </form>  
- </div>
+  <div class="form-content">
+    <input #inputTask class="task-input" type="search" />
+    <!-- <input class="task-input-btn" type="button" value="Add Task"/> -->
+    <button
+      class="task-input-btn"
+      (click)="addNewTask(inputTask.value); ($event.preventDefault)"
+    >
+      Add Task
+    </button>
+  </div>
+</div>

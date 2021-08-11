@@ -1,24 +1,21 @@
-
 <div class="nav-bar">
-    <div class="navBar-logo">
-       
-            <span class="logo-icon"> <i class="fab fa-angellist"></i></span>
-            <span class="logo-text">TODOS</span>
-        
-    </div>
+  <div class="navBar-logo" [routerLink]="''">
+    <span class="logo-icon"> <i class="fab fa-angellist"></i></span>
+    <span class="logo-text">TODOS</span>
+  </div>
 
-    <div class="linksWrapper">
-        <a href="#" class="nav-link"> home </a>
-        <a  [routerLink]="'/signup'" class="nav-link"> Sign Up </a>
-    </div>
+  <div class="linksWrapper">
+    <a href="#" class="nav-link"> home </a>
+    <a [routerLink]="'/login'" class="nav-link"> Login </a>
+    <a [routerLink]="'/signup'" class="nav-link"> Sign Up </a>
+  </div>
 
-    <div class="nav-info">
-        <div class="nav-info-setting">
-            <i class="fa fa-cogs"></i>
-        </div>
-        <div class="nav-info-profile">
-             <i class="far fa-user-circle"></i> 
-        </div>
+  <div class="nav-info">
+    <div class="nav-info-setting">
+      <i class="fa fa-cogs"></i>
     </div>
+    <div class="nav-info-profile">
+      <i class="far fa-user-circle"></i>
+    </div>
+  </div>
 </div>
-
