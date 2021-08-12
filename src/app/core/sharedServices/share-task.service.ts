@@ -3,15 +3,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class TaskService {
+export class SharedTaskService {
   rootUrl = 'http://localhost:3000/api';
   constructor(private _http: HttpClient) {}
 
-  addTask(task: any) {
-    return this._http.post(this.rootUrl + '/addTask', task);
+  getAllTasks() {
+    return this._http.get(this.rootUrl + '/getAllTasks');
   }
-
-  // getAllTasks() {
-  //   return this._http.get(this.rootUrl + '/getAllTasks');
-  // }
 }
