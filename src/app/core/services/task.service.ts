@@ -10,7 +10,9 @@ export class TaskService {
   addTask(task: any) {
     return this._http.post(this.rootUrl + '/addTask', task);
   }
-
+  deleteTask(id: any) {
+    return this._http.delete(this.rootUrl + '/deleteTask/' + `${id}`);
+  }
   // getAllTasks() {
   //   return this._http.get(this.rootUrl + '/getAllTasks');
   // }
