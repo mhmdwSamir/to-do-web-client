@@ -1,6 +1,6 @@
 <div class="task" *ngFor="let task of tasks; let i = index">
   <input type="checkbox" id="" name="" value="" />
-  <p class="taskText">{{ task.content }}</p>
+  <p class="taskText">{{ task?.content }}</p>
   <i (click)="deleteTask(task._id)" class="deleteTask far fa-times-circle"></i>
 </div>
 

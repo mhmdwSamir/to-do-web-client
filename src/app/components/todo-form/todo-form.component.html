@@ -2,10 +2,7 @@
   <div class="form-content">
     <input #inputTask class="task-input" type="search" />
     <!-- <input class="task-input-btn" type="button" value="Add Task"/> -->
-    <button
-      class="task-input-btn"
-      (click)="addNewTask(inputTask.value); ($event.preventDefault)"
-    >
+    <button class="task-input-btn" (click)="addNewTask(inputTask.value)">
       Add Task
     </button>
   </div>
