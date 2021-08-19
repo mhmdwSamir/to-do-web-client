@@ -1,11 +1,13 @@
-<div class="states"> 
-    <div class="items-count">2 items left</div>
-    <div class="task-states">
-      <a href="#"> All </a>
-      <a href="#"> Active </a>
-      <a href="#"> Completed </a>
-    </div>
-    <div class="clear-completed">
-      <a href=""> clear completed</a>
-    </div>
+<div class="states">
+  <div class="items-count">
+    <span class="taskCount">{{ taskCount }} </span> items Found
   </div>
+  <div class="task-states">
+    <a href="#"> All </a>
+    <a href="#"> Active </a>
+    <a (click)="showCompletedTask()"> Completed </a>
+  </div>
+  <div class="clear-completed">
+    <a href=""> clear completed</a>
+  </div>
+</div>

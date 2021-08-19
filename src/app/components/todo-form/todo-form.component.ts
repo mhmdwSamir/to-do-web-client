@@ -28,9 +28,7 @@ export class TodoFormComponent implements OnInit {
   });
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
-    console.log(this.addTaskForm.controls.errors);
-  }
+  ngOnInit(): void {}
 
   addNewTask(taskContent: string) {
     if (taskContent && this.addTaskForm.valid) {

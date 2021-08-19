@@ -3,7 +3,10 @@
     <app-todo-form (onAddTask)="handleAddingTask($event)"></app-todo-form>
   </div>
   <div class="blank-body">
-    <app-todo-stats></app-todo-stats>
+    <app-todo-stats
+      (getCompleteTaskBtn)="getCompletedTasks()"
+      [taskCount]="taskCount"
+    ></app-todo-stats>
     <app-todo-task
       (onDeleteTask)="onDeleteTask()"
       [tasks]="tasksList"
