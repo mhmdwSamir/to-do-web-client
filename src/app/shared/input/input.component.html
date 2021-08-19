@@ -1,0 +1,33 @@
+<div class="form-control">
+  <label for="fname">{{ label }}</label
+  ><br />
+  <input [formControl]="control" type="text" id="fname" name="fname" /><br />
+</div>
+
+<!--  Display Error Message   -->
+<ng-container *ngIf="control.errors && control.touched && control.dirty">
+  <p class="error-para" *ngIf="control.errors.required">
+    ** {{ label }} feild is required
+  </p>
+  <p class="error-para" *ngIf="control.errors.minlength">
+    **{{ label }} must be at least
+    {{ control.errors.minlength.requiredLength }}
+    chareters but you enter
+    {{ control.errors.minlength.actualLength }} chareter
+  </p>
+  <p class="error-para" *ngIf="control.errors.maxlength">
+    ** {{ label }} must be at most
+    {{ control.errors.maxlength.requiredLength }}
+    chareters but you enter
+    {{ control.errors.maxlength.actualLength }} chareter
+  </p>
+  <p class="error-para" *ngIf="control.errors.email">
+    ** {{ label }} must be Valid
+  </p>
+  <p class="error-para" *ngIf="control.errors.pattern">
+    ** {{ label }} is invalid <br />
+    - At least one lowercase character [a-z],<br />
+    - At least one uppercase character [A-Z],<br />
+    - At least one special character,
+  </p>
+</ng-container>

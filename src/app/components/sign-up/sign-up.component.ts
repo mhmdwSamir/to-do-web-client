@@ -10,12 +10,22 @@ export class SignUpComponent implements OnInit {
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(10),
+      Validators.maxLength(20),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(32),
+      // Validators.pattern('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$'),
     ]),
   });
   constructor() {}
 
   ngOnInit(): void {
     console.log(this.formSignUp);
+  }
+  register() {
+    console.log(this.formSignUp.value);
   }
 }

@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
-import { SharedTaskService } from 'src/app/core/sharedServices/share-task.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -16,22 +15,19 @@ import { SharedTaskService } from 'src/app/core/sharedServices/share-task.servic
 })
 export class TodoFormComponent implements OnInit {
   @ViewChild('inputTask') input!: ElementRef<HTMLInputElement>;
-  @Output() onAddTask = new EventEmitter();
+  @Output() onAddTask = new EventEmitter<any>();
 
-  constructor(
-    private taskService: TaskService,
-    private _SharedTaskService: SharedTaskService
-  ) {}
+  constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {}
   addNewTask(taskContent: string) {
     if (taskContent) {
       this.taskService
         .addTask({ content: taskContent })
-        .subscribe((data) => {});
-
-      this.input.nativeElement.value = '';
-      this.onAddTask.emit(taskContent);
+        .subscribe((resp: any) => {
+          this.onAddTask.emit(resp.data);
+          this.input.nativeElement.value = '';
+        });
     }
   }
 }

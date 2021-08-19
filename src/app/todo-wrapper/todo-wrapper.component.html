@@ -4,6 +4,11 @@
   </div>
   <div class="blank-body">
     <app-todo-stats></app-todo-stats>
-    <app-todo-task [tasks]="tasksList"></app-todo-task>
+    <app-todo-task
+      (onDeleteTask)="onDeleteTask()"
+      [tasks]="tasksList"
+    ></app-todo-task>
+
+    <p *ngIf="messageNoTasks && tasksList.length == 0">{{ messageNoTasks }}</p>
   </div>
 </div>

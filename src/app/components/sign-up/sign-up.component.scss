@@ -1,4 +1,4 @@
-@import './../../../assets/scss/mixins/image-mixins';
+@import "./../../../assets/scss/mixins/image-mixins";
 
 .sign-up-section {
   display: flex;
@@ -8,7 +8,7 @@
     width: 40%;
     position: relative;
     img {
-        @include image-fit;
+      @include image-fit;
     }
     .overlay {
       position: absolute;
@@ -39,43 +39,6 @@
       //  flex-direction: column;
       //  align-items: center;
       padding: 20px 50px;
-      .form-control {
-        margin: 50px 0;
-        &:last-child {
-          margin-bottom: 0;
-        }
-        label {
-          font-size: 25px;
-          letter-spacing: 1.2px;
-          color: gray;
-          text-transform: uppercase;
-        }
-        input[type="text"],
-        input[type="password"] {
-          width: 80%;
-          margin: 5px 0;
-          height: 40px;
-          font-size: 25px;
-          border: none;
-          border-bottom: 1px solid rgb(87, 85, 85);
-          outline: none;
-        }
-        input[type="submit"] {
-          width: 80%;
-          padding: 10px;
-          background-color: rgba(157, 135, 233, 0.8);
-          border: none;
-          font-size: 25px;
-          letter-spacing: 1.3px;
-          color: #fff;
-          border-radius: 100px;
-          cursor: pointer;
-          transition: transform 0.2s ease-in-out;
-          &:hover {
-            transform: translateY(-2px);
-          }
-        }
-      }
     }
   }
 }

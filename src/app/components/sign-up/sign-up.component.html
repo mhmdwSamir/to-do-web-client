@@ -4,40 +4,20 @@
     <div class="overlay">step into our magical world by signing up here</div>
   </div>
   <div class="right-part">
-    <form [formGroup]="formSignUp" class="form-signup">
-      <div class="form-control">
-        <label for="fname">Full name:</label><br />
-        <input
-          formControlName="name"
-          type="text"
-          id="fname"
-          name="fname"
-        /><br />
-      </div>
-
-      <!--  Display Error Message   -->
-      <div *ngIf="formSignUp.controls.errors"></div>
-
-      <div class="form-control">
-        <label for="email">Email:</label><br />
-        <input type="text" id="email" name="email" />
-      </div>
-
-      <div class="form-control">
-        <label for="password">Password:</label><br />
-        <input type="password" id="password" name="password" />
-      </div>
-      <div class="form-control">
-        <label for="password">confirm password:</label><br />
-        <input type="password" id="password" name="password" />
-      </div>
-      <div class="form-control">
-        <input type="submit" value="Sign Up" />
-      </div>
+    <form [formGroup]="formSignUp" (ngSubmit)="register()" class="form-signup">
+      <app-input label="Name" [control]="formSignUp.controls.name"></app-input>
+      <app-input
+        label="Email"
+        [control]="formSignUp.controls.email"
+      ></app-input>
+      <app-input
+        label="Password"
+        [control]="formSignUp.controls.password"
+      ></app-input>
     </form>
   </div>
 </section>
 
 <!--  Demonstration only -->
-<div>{{ formSignUp.errors | json }}</div>
+<div>{{ formSignUp.controls.name.errors | json }}</div>
 <div>{{ formSignUp.value | json }}</div>

@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
-import { SharedTaskService } from 'src/app/core/sharedServices/share-task.service';
 
 @Component({
   selector: 'app-todo-task',
@@ -8,24 +7,17 @@ import { SharedTaskService } from 'src/app/core/sharedServices/share-task.servic
   styleUrls: ['./todo-task.component.scss'],
 })
 export class TodoTaskComponent implements OnInit {
-  TasksMessage!: string;
+  taskFound: boolean = false;
   @Input() tasks: any;
-  // tasks!: any;
-  constructor(
-    private _taskService: TaskService,
-    private _SharedTaskService: SharedTaskService
-  ) {}
+  @Output() onDeleteTask = new EventEmitter();
 
-  deleteTask(id: any) {
-    this._taskService.deleteTask(id).subscribe((data) => {
-      console.log(id);
-      this._SharedTaskService.getAllTasks();
+  constructor(private _taskService: TaskService) {}
+
+  deleteTask(task: any) {
+    this._taskService.deleteTask(task._id).subscribe((data) => {
+      this.onDeleteTask.emit();
     });
   }
 
-  ngOnInit(): void {
-    // this._SharedTaskService.getAllTasks().subscribe((data) => {
-    //   this.tasks = data;
-    // });
-  }
+  ngOnInit(): void {}
 }
