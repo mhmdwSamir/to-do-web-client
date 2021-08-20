@@ -3,8 +3,8 @@
     <span class="taskCount">{{ taskCount }} </span> items Found
   </div>
   <div class="task-states">
-    <a href="#"> All </a>
-    <a href="#"> Active </a>
+    <a (click)="showAllTask()"> All </a>
+    <a (click)="showActiveTask()"> Active </a>
     <a (click)="showCompletedTask()"> Completed </a>
   </div>
   <div class="clear-completed">

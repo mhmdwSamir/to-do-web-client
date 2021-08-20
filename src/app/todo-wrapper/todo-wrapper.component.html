@@ -4,7 +4,9 @@
   </div>
   <div class="blank-body">
     <app-todo-stats
+      (getAllTaskBtn)="getAllTasks()"
       (getCompleteTaskBtn)="getCompletedTasks()"
+      (getActiveTaskBtn)="getActiveTasks()"
       [taskCount]="taskCount"
     ></app-todo-stats>
     <app-todo-task

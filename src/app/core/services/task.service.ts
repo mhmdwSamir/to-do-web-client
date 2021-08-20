@@ -17,9 +17,6 @@ export class TaskService {
   deleteTask(id: any) {
     return this._http.delete(this.rootUrl + '/deleteTask/' + `${id}`);
   }
-  query = {
-    completed: true,
-  };
 
   getCompletedTasks() {
     let params = new HttpParams({
@@ -27,8 +24,18 @@ export class TaskService {
         completed: 'true',
       },
     });
-    // params = params.append('completed', 'false');
+
     return this._http.get(this.rootUrl + '/getCompletedTasks', {
+      params,
+    });
+  }
+  getActiveTasks() {
+    let params = new HttpParams({
+      fromObject: {
+        completed: 'false',
+      },
+    });
+    return this._http.get(this.rootUrl + '/getActiveTasks', {
       params,
     });
   }

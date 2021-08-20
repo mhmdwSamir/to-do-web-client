@@ -24,6 +24,7 @@ export class TodoWrapperComponent implements OnInit {
   getAllTasks() {
     this._sharedTaskService.getAllTasks().subscribe(
       (data) => {
+        console.log(data);
         this.tasksList = data as any;
         this.taskCount = this.tasksList.length;
       },
@@ -50,8 +51,12 @@ export class TodoWrapperComponent implements OnInit {
 
   getCompletedTasks() {
     this._taskService.getCompletedTasks().subscribe((completedTasks: any) => {
-      console.log(completedTasks);
       this.tasksList = completedTasks;
+    });
+  }
+  getActiveTasks() {
+    this._taskService.getActiveTasks().subscribe((activeTasks: any) => {
+      this.tasksList = activeTasks;
     });
   }
 }
