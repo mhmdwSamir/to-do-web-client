@@ -23,9 +23,10 @@ export class TodoFormComponent implements OnInit {
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(15),
-      Validators.pattern('^[a-zA-Z]+$'),
+      Validators.pattern(/^[0-9{2}A-Za-z\s\-]+$/),
     ]),
   });
+  // /[^A-Za-z0-9]+/
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {}

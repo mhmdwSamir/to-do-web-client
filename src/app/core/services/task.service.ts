@@ -17,7 +17,9 @@ export class TaskService {
   deleteTask(id: any) {
     return this._http.delete(this.rootUrl + '/deleteTask/' + `${id}`);
   }
-
+  deleteCompletedTasks() {
+    return this._http.delete(this.rootUrl + '/deleteAllTasks/');
+  }
   getCompletedTasks() {
     let params = new HttpParams({
       fromObject: {

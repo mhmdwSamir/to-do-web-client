@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  inProduction = environment.production;
   formSignUp = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -22,10 +24,9 @@ export class SignUpComponent implements OnInit {
   });
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.formSignUp);
-  }
+  ngOnInit(): void {}
   register() {
+    // call sign up end point to register the user
     console.log(this.formSignUp.value);
   }
 }

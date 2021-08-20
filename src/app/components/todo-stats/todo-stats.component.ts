@@ -10,6 +10,7 @@ export class TodoStatsComponent implements OnInit {
   @Output() getCompleteTaskBtn = new EventEmitter();
   @Output() getActiveTaskBtn: EventEmitter<boolean> = new EventEmitter();
   @Output() getAllTaskBtn: EventEmitter<boolean> = new EventEmitter();
+  @Output() clearCompletedBtn: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {}
 
@@ -22,9 +23,12 @@ export class TodoStatsComponent implements OnInit {
   showCompletedTask() {
     this.getCompleteTaskBtn.emit();
   }
-  // active
+
   showActiveTask() {
-    console.log('active btn clicked');
     this.getActiveTaskBtn.emit();
+  }
+
+  openModal() {
+    this.clearCompletedBtn.emit();
   }
 }

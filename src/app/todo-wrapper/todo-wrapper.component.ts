@@ -13,6 +13,7 @@ export class TodoWrapperComponent implements OnInit {
   messageNoTasks: string = '';
   tasksList: any[] = [];
   taskCount: number = 0;
+  modelOpen = false;
   constructor(
     private _sharedTaskService: SharedTaskService,
     private _taskService: TaskService
@@ -24,7 +25,6 @@ export class TodoWrapperComponent implements OnInit {
   getAllTasks() {
     this._sharedTaskService.getAllTasks().subscribe(
       (data) => {
-        console.log(data);
         this.tasksList = data as any;
         this.taskCount = this.tasksList.length;
       },
@@ -58,5 +58,17 @@ export class TodoWrapperComponent implements OnInit {
     this._taskService.getActiveTasks().subscribe((activeTasks: any) => {
       this.tasksList = activeTasks;
     });
+  }
+
+  togglleModelvisibilty() {
+    this.modelOpen = !this.modelOpen;
+  }
+  clearCompletedTasks() {
+    // call end point to delete all completed tasks
+    this._taskService.deleteCompletedTasks().subscribe((data) => {
+      console.log(data);
+      this.getAllTasks();
+    });
+    this.togglleModelvisibilty();
   }
 }

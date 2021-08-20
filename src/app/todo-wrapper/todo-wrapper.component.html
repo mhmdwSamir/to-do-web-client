@@ -7,6 +7,7 @@
       (getAllTaskBtn)="getAllTasks()"
       (getCompleteTaskBtn)="getCompletedTasks()"
       (getActiveTaskBtn)="getActiveTasks()"
+      (clearCompletedBtn)="togglleModelvisibilty()"
       [taskCount]="taskCount"
     ></app-todo-stats>
     <app-todo-task
@@ -17,3 +18,8 @@
     <p *ngIf="messageNoTasks && tasksList.length == 0">{{ messageNoTasks }}</p>
   </div>
 </div>
+<app-modal
+  *ngIf="modelOpen"
+  (clearConfirm)="clearCompletedTasks()"
+  (close)="togglleModelvisibilty()"
+></app-modal>

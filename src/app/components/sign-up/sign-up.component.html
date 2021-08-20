@@ -14,10 +14,13 @@
         label="Password"
         [control]="formSignUp.controls.password"
       ></app-input>
+      <button type="submit" class="btn btn-primary mt-3">Sing Up</button>
     </form>
   </div>
 </section>
 
 <!--  Demonstration only -->
-<div>{{ formSignUp.controls.name.errors | json }}</div>
-<div>{{ formSignUp.value | json }}</div>
+<div *ngIf="!inProduction">
+  <div>{{ formSignUp.controls.name.errors | json }}</div>
+  <div>{{ formSignUp.value | json }}</div>
+</div>
