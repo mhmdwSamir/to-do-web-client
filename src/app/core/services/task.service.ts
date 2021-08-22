@@ -41,4 +41,7 @@ export class TaskService {
       params,
     });
   }
+  signup(userCredintial: any) {
+    return this._http.post(this.rootUrl + '/signup', userCredintial);
+  }
 }

@@ -4,6 +4,7 @@ import {
   ElementRef,
   Output,
   EventEmitter,
+  OnDestroy,
 } from '@angular/core';
 
 @Component({
@@ -11,7 +12,7 @@ import {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter();
   @Output() clearConfirm = new EventEmitter();
   constructor(private ele: ElementRef) {
@@ -20,6 +21,10 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     document.body.appendChild(this.ele.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.ele.nativeElement.remove();
   }
 
   onCloseClick() {

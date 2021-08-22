@@ -5,7 +5,10 @@
   </div>
   <div class="right-part">
     <form [formGroup]="formSignUp" (ngSubmit)="register()" class="form-signup">
-      <app-input label="Name" [control]="formSignUp.controls.name"></app-input>
+      <app-input
+        label="Name"
+        [control]="formSignUp.controls.userName"
+      ></app-input>
       <app-input
         label="Email"
         [control]="formSignUp.controls.email"
@@ -16,11 +19,12 @@
       ></app-input>
       <button type="submit" class="btn btn-primary mt-3">Sing Up</button>
     </form>
+    <p *ngIf="messageError" class="error">{{ messageError }}</p>
   </div>
 </section>
 
 <!--  Demonstration only -->
-<div *ngIf="!inProduction">
-  <div>{{ formSignUp.controls.name.errors | json }}</div>
+<!-- <div *ngIf="!inProduction">
+  <div>{{ formSignUp.controls.userName.errors | json }}</div>
   <div>{{ formSignUp.value | json }}</div>
-</div>
+</div> -->

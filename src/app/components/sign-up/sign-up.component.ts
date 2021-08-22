@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TaskService } from 'src/app/core/services/task.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-sign-up',
@@ -8,8 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class SignUpComponent implements OnInit {
   inProduction = environment.production;
+  messageError!: string;
   formSignUp = new FormGroup({
-    name: new FormControl('', [
+    userName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
@@ -22,11 +25,20 @@ export class SignUpComponent implements OnInit {
       // Validators.pattern('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$'),
     ]),
   });
-  constructor() {}
+  constructor(private _taskService: TaskService, private _route: Router) {}
 
   ngOnInit(): void {}
   register() {
     // call sign up end point to register the user
-    console.log(this.formSignUp.value);
+
+    this._taskService.signup(this.formSignUp.value).subscribe(
+      (data) => {
+        this._route.navigate(['']);
+      },
+      ({ error }) => {
+        this.messageError = error.message;
+        // console.log(error.error.message);
+      }
+    );
   }
 }
