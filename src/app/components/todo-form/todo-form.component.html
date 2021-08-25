@@ -1,12 +1,45 @@
-<div class="todo-form">
-  <div class="form-content">
-    <input #inputTask class="task-input" type="search" />
-    <!-- <input class="task-input-btn" type="button" value="Add Task"/> -->
-    <button
-      class="task-input-btn"
-      (click)="addNewTask(inputTask.value); ($event.preventDefault)"
-    >
-      Add Task
-    </button>
+<form [formGroup]="addTaskForm" (ngSubmit)="addNewTask(inputTask.value)">
+  <div class="todo-form">
+    <div class="form-content">
+      <input formControlName="task" #inputTask class="task-input" type="text" />
+
+      <button
+        class="task-input-btn"
+        [disabled]="inputTask.value == 0"
+        type="submit"
+      >
+        Add Task
+      </button>
+    </div>
   </div>
+</form>
+
+<div
+  class="handle-error-message"
+  *ngIf="
+    addTaskForm.controls.task.errors &&
+    addTaskForm.controls.task.touched &&
+    addTaskForm.controls.task.dirty
+  "
+>
+  <p class="error-message" *ngIf="addTaskForm.controls.task.errors?.required">
+    ** You Must write Task to Add it .
+  </p>
+  <p class="error-message" *ngIf="addTaskForm.controls.task.errors?.minlength">
+    ** Task must be greater than
+    {{ addTaskForm.controls.task.errors?.minlength.actualLength }} Char , it
+    should be at least
+    {{ addTaskForm.controls.task.errors?.minlength.requiredLength }} Char
+  </p>
+  <p class="error-message" *ngIf="addTaskForm.controls.task.errors?.maxlength">
+    ** Task must be less than
+    {{ addTaskForm.controls.task.errors?.maxlength.actualLength }} Char it
+    should be at least
+    {{ addTaskForm.controls.task.errors?.maxlength.requiredLength }} Char
+  </p>
+  <p class="error-message" *ngIf="addTaskForm.controls.task.errors?.pattern">
+    ** Tasks name should be strings with Numbers and Special Characters <br />
+    - Numbers Only not accepted <br />
+    - Special Characters Only not accepted
+  </p>
 </div>

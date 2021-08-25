@@ -1,36 +1,30 @@
 <section class="sign-up-section">
-    <div class="left-part"> 
-        <img src="../../../assets/signUp.jpeg" alt="img-sign-up">
-        <div class="overlay">
-            step into our magical world by signing up here
-        </div>
-    </div>
-    <div class="right-part">
-     <form class="form-signup">
-        
-            <div class="form-control">
-                <label for="fname">Full name:</label><br>
-                <input type="text" id="fname" name="fname"><br>
-            </div>
-            <div class="form-control">
-                <label for="email">Email:</label><br>
-                <input type="text" id="email" name="email">
-            </div>
-
-            <div class="form-control">
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="form-control">
-                <label for="password">confirm password:</label><br>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="form-control">
-                <input type="submit" value="Sign Up">
-            </div>
-         
-          </form>
-    
-
-    </div>
+  <div class="left-part">
+    <img src="../../../assets/signUp.jpeg" alt="img-sign-up" />
+    <div class="overlay">step into our magical world by signing up here</div>
+  </div>
+  <div class="right-part">
+    <form [formGroup]="formSignUp" (ngSubmit)="register()" class="form-signup">
+      <app-input
+        label="Name"
+        [control]="formSignUp.controls.userName"
+      ></app-input>
+      <app-input
+        label="Email"
+        [control]="formSignUp.controls.email"
+      ></app-input>
+      <app-input
+        label="Password"
+        [control]="formSignUp.controls.password"
+      ></app-input>
+      <button type="submit" class="btn btn-primary mt-3">Sing Up</button>
+    </form>
+    <p *ngIf="messageError" class="error">{{ messageError }}</p>
+  </div>
 </section>
+
+<!--  Demonstration only -->
+<!-- <div *ngIf="!inProduction">
+  <div>{{ formSignUp.controls.userName.errors | json }}</div>
+  <div>{{ formSignUp.value | json }}</div>
+</div> -->

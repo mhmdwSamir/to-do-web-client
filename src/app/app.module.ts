@@ -10,6 +10,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { TodoWrapperComponent } from './todo-wrapper/todo-wrapper.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
     TodoWrapperComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

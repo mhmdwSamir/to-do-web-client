@@ -1,9 +1,25 @@
 <div class="lay-out">
   <div class="back-cover">
-    <app-todo-form></app-todo-form>
+    <app-todo-form (onAddTask)="handleAddingTask($event)"></app-todo-form>
   </div>
   <div class="blank-body">
-    <app-todo-stats></app-todo-stats>
-    <app-todo-task></app-todo-task>
+    <app-todo-stats
+      (getAllTaskBtn)="getAllTasks()"
+      (getCompleteTaskBtn)="getCompletedTasks()"
+      (getActiveTaskBtn)="getActiveTasks()"
+      (clearCompletedBtn)="togglleModelvisibilty()"
+      [taskCount]="taskCount"
+    ></app-todo-stats>
+    <app-todo-task
+      (onDeleteTask)="onDeleteTask()"
+      [tasks]="tasksList"
+    ></app-todo-task>
+
+    <p *ngIf="messageNoTasks && tasksList.length == 0">{{ messageNoTasks }}</p>
   </div>
 </div>
+<app-modal
+  *ngIf="modelOpen"
+  (clearConfirm)="clearCompletedTasks()"
+  (close)="togglleModelvisibilty()"
+></app-modal>
