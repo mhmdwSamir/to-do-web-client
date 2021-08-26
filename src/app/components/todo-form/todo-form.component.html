@@ -1,19 +1,33 @@
-<form [formGroup]="addTaskForm" (ngSubmit)="addNewTask(inputTask.value)">
-  <div class="todo-form">
-    <div class="form-content">
-      <input formControlName="task" #inputTask class="task-input" type="text" />
-
-      <button
-        class="task-input-btn"
-        [disabled]="inputTask.value == 0"
-        type="submit"
-      >
-        Add Task
-      </button>
-    </div>
+<div class="wrapper">
+  <div class="search">
+    <input
+      class="input-search"
+      (input)="onSearhTerm($event.target.value)"
+      type="text"
+      placeholder="Search Your Tasks"
+    />
   </div>
-</form>
+  <form [formGroup]="addTaskForm" (ngSubmit)="addNewTask(inputTask.value)">
+    <div class="todo-form">
+      <div class="form-content">
+        <input
+          formControlName="task"
+          #inputTask
+          class="task-input"
+          type="text"
+        />
 
+        <button
+          class="task-input-btn"
+          [disabled]="inputTask.value == 0"
+          type="submit"
+        >
+          Add Task
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 <div
   class="handle-error-message"
   *ngIf="

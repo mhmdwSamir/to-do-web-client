@@ -1,27 +1,30 @@
-.todo-form {
+.wrapper {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  .form-content {
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    .task-input {
-      width: 400px;
-      padding: 16px 15px;
-      border: none;
-      font-size: 20px;
-      &:focus {
-        outline: none;
+  justify-content: space-evenly;
+  .todo-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    .form-content {
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      .task-input {
+        width: 400px;
+        padding: 16px 15px;
+        border: none;
+        font-size: 20px;
+        &:focus {
+          outline: none;
+        }
       }
-    }
-    .task-input-btn {
-      padding: 16px 15px;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
+      .task-input-btn {
+        padding: 16px 15px;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+      }
     }
   }
 }
-
 .handle-error-message {
   display: flex;
   flex-direction: column;

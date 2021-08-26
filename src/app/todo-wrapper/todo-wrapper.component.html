@@ -1,6 +1,9 @@
 <div class="lay-out">
   <div class="back-cover">
-    <app-todo-form (onAddTask)="handleAddingTask($event)"></app-todo-form>
+    <app-todo-form
+      (searchTerm)="ongetSearchTerm($event)"
+      (onAddTask)="handleAddingTask($event)"
+    ></app-todo-form>
   </div>
   <div class="blank-body">
     <app-todo-stats
@@ -16,8 +19,12 @@
     ></app-todo-task>
 
     <p *ngIf="messageNoTasks && tasksList.length == 0">{{ messageNoTasks }}</p>
+    <p *ngIf="noTasksWithCriteria && tasksList.length == 0">
+      {{ noTasksWithCriteria }}
+    </p>
   </div>
 </div>
+
 <app-modal
   *ngIf="modelOpen"
   (clearConfirm)="clearCompletedTasks()"

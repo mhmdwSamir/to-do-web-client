@@ -10,4 +10,8 @@ export class AppComponent {
   title = 'toDoApp';
 
   constructor() {}
+
+  onSearchTerm(term: string) {
+    console.log(' comes from app component ', term);
+  }
 }

@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TaskService } from '../core/services/task.service';
-
+import { debounce, delay, distinctUntilChanged } from 'rxjs/operators';
 import { SharedTaskService } from '../core/sharedServices/share-task.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { SharedTaskService } from '../core/sharedServices/share-task.service';
 })
 export class TodoWrapperComponent implements OnInit {
   messageNoTasks: string = '';
+  noTasksWithCriteria: string = '';
   tasksList: any[] = [];
   taskCount: number = 0;
   modelOpen = false;
@@ -70,5 +71,21 @@ export class TodoWrapperComponent implements OnInit {
       this.getAllTasks();
     });
     this.togglleModelvisibilty();
+  }
+
+  ongetSearchTerm(term: string) {
+    console.log(' successfly emitted and listen for it  ', term);
+    // call get all tasks method to get all tasks that has name with the term
+
+    this._sharedTaskService.filterTasks(term).subscribe(
+      (filteredTask: any) => {
+        console.log(filteredTask);
+        this.tasksList = filteredTask;
+      },
+      ({ error }) => {
+        this.noTasksWithCriteria = error;
+        this.tasksList = [];
+      }
+    );
   }
 }

@@ -36,6 +36,11 @@
       }
     }
   }
+  .search {
+    .input-search {
+      border: none;
+    }
+  }
   .nav-info {
     flex-basis: 30%;
     display: flex;

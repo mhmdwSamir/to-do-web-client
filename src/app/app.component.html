@@ -1,4 +1,4 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar (searchTerm)="onSearchTerm($event)"></app-nav-bar>
 <div class="app-wrapper">
   <router-outlet></router-outlet>
 </div>

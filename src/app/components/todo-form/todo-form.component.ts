@@ -28,7 +28,7 @@ export class TodoFormComponent implements OnInit {
   });
   // /[^A-Za-z0-9]+/
   constructor(private taskService: TaskService) {}
-
+  @Output() searchTerm = new EventEmitter();
   ngOnInit(): void {}
 
   addNewTask(taskContent: string) {
@@ -40,5 +40,10 @@ export class TodoFormComponent implements OnInit {
           this.input.nativeElement.value = '';
         });
     }
+  }
+
+  onSearhTerm(term: string) {
+    console.log(term);
+    this.searchTerm.emit(term);
   }
 }

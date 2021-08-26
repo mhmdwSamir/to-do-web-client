@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,5 +9,15 @@ export class SharedTaskService {
 
   getAllTasks() {
     return this._http.get(this.rootUrl + '/getAllTasks');
+  }
+  filterTasks(term: any) {
+    let params = new HttpParams({
+      fromObject: {
+        content: term,
+      },
+    });
+    return this._http.get(this.rootUrl + '/getAllTasks', {
+      params,
+    });
   }
 }
