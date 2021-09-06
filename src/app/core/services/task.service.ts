@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { pluck } from 'rxjs/operators';
+import { Tasks } from '../interfaces/task';
+
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
   rootUrl = 'http://localhost:3000/api';
 
-  //  let  params = new HttpParams();
-  //  params.append('completed', true);
-
   constructor(private _http: HttpClient) {}
 
   addTask(task: any) {
     return this._http.post(this.rootUrl + '/addTask', task);
   }
-  deleteTask(id: any) {
+  deleteTask(id: number) {
     return this._http.delete(this.rootUrl + '/deleteTask/' + `${id}`);
   }
   deleteCompletedTasks() {
-    return this._http.delete(this.rootUrl + '/deleteAllTasks/');
+    return this._http.delete<Tasks[]>(this.rootUrl + '/deleteAllTasks/');
   }
   getCompletedTasks() {
     let params = new HttpParams({
@@ -27,7 +27,7 @@ export class TaskService {
       },
     });
 
-    return this._http.get(this.rootUrl + '/getCompletedTasks', {
+    return this._http.get<Tasks[]>(this.rootUrl + '/getCompletedTasks', {
       params,
     });
   }
@@ -37,7 +37,7 @@ export class TaskService {
         completed: 'false',
       },
     });
-    return this._http.get(this.rootUrl + '/getActiveTasks', {
+    return this._http.get<Tasks[]>(this.rootUrl + '/getActiveTasks', {
       params,
     });
   }

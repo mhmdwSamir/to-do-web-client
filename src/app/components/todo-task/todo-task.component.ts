@@ -8,7 +8,11 @@ import { TaskService } from 'src/app/core/services/task.service';
 })
 export class TodoTaskComponent implements OnInit {
   taskFound: boolean = false;
+  // page = 1;
+  // pageSize = 3;
   @Input() tasks: any;
+  @Input() page!: number;
+  @Input() pageSize!: number;
   @Output() onDeleteTask = new EventEmitter();
 
   constructor(private _taskService: TaskService) {}

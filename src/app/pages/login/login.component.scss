@@ -40,7 +40,7 @@
       //  align-items: center;
       padding: 20px 50px;
       .form-control {
-        margin: 50px 0;
+        margin: 20px 0;
         &:last-child {
           margin-bottom: 0;
         }
@@ -91,12 +91,12 @@
   padding: 15px 5px;
   cursor: pointer;
   border: none;
-  transition: background-color .3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
   &:focus {
-    outline: none; 
+    outline: none;
   }
   &:hover {
     background-color: white;
-    color: rgba(157, 135, 233, 0.8)
+    color: rgba(157, 135, 233, 0.8);
   }
 }

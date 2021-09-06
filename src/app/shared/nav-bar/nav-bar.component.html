@@ -10,12 +10,27 @@
     <a [routerLink]="'/signup'" class="nav-link"> Sign Up </a>
   </div>
 
+  <button type="button" (click)="logOutUser()">logout</button>
+
   <div class="nav-info">
     <div class="nav-info-setting">
-      <i class="fa fa-cogs"></i>
-    </div>
-    <div class="nav-info-profile">
+      <!-- <div ngbDropdown class="d-inline-block">
+        <button
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Toggle dropdown
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
+        </div>
+      </div> -->
+      <!-- <div class="nav-info-profile">
       <i class="far fa-user-circle"></i>
+    </div> -->
     </div>
   </div>
 </div>

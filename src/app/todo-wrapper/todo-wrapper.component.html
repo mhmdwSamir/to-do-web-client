@@ -6,6 +6,20 @@
     ></app-todo-form>
   </div>
   <div class="blank-body">
+    <!-- start dropDown -->
+    <div style="width: 20%">
+      <select
+        class="form-select"
+        [(ngModel)]="sortBy"
+        (ngModelChange)="onSelectOption($event)"
+      >
+        <option>SortBy</option>
+        <option *ngFor="let option of optionsSortingBy">
+          {{ option.value }}
+        </option>
+      </select>
+    </div>
+    <!-- End dropDown -->
     <app-todo-stats
       (getAllTaskBtn)="getAllTasks()"
       (getCompleteTaskBtn)="getCompletedTasks()"
@@ -15,6 +29,8 @@
     ></app-todo-stats>
     <app-todo-task
       (onDeleteTask)="onDeleteTask()"
+      [page]="page"
+      [pageSize]="pageSize"
       [tasks]="tasksList"
     ></app-todo-task>
 
@@ -30,3 +46,29 @@
   (clearConfirm)="clearCompletedTasks()"
   (close)="togglleModelvisibilty()"
 ></app-modal>
+<!-- Pagination  -->
+<div class="d-flex justify-content-between border">
+  <div class="paginator" *ngIf="tasksList.length">
+    <ngb-pagination
+      (pageChange)="onChangePage()"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="tasksList.length"
+    ></ngb-pagination>
+  </div>
+
+  <div>
+    <label>Items Per Page</label>
+    <select
+      class="form-select"
+      [(ngModel)]="limit"
+      (ngModelChange)="onSelectNumOfItemsInPage($event)"
+    >
+      <option *ngFor="let option of numOfItemsInpage">
+        {{ option.value }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<!-- End Pagination -->

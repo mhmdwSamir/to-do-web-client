@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './core/services/auth.service';
 import { TaskService } from './core/services/task.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { TaskService } from './core/services/task.service';
 export class AppComponent {
   title = 'toDoApp';
 
-  constructor() {}
+  constructor(public auth: AuthService) {}
 
   onSearchTerm(term: string) {
     console.log(' comes from app component ', term);

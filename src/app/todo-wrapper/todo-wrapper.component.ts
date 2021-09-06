@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Tasks } from '../core/interfaces/task';
 import { TaskService } from '../core/services/task.service';
-import { debounce, delay, distinctUntilChanged } from 'rxjs/operators';
 import { SharedTaskService } from '../core/sharedServices/share-task.service';
-
 @Component({
   selector: 'app-todo-wrapper',
   templateUrl: './todo-wrapper.component.html',
@@ -12,30 +11,77 @@ import { SharedTaskService } from '../core/sharedServices/share-task.service';
 export class TodoWrapperComponent implements OnInit {
   messageNoTasks: string = '';
   noTasksWithCriteria: string = '';
-  tasksList: any[] = [];
+  tasksList: Tasks[] = [];
   taskCount: number = 0;
   modelOpen = false;
+  page = 1;
+  pageSize = 5;
+
+  optionsSortingBy = [
+    {
+      id: 1,
+      value: 'rate',
+    },
+    {
+      id: 2,
+      value: 'Date',
+    },
+  ];
+
+  numOfItemsInpage = [
+    {
+      value: 2,
+    },
+    {
+      value: 3,
+    },
+    {
+      value: 5,
+    },
+    {
+      value: 10,
+    },
+    {
+      value: 15,
+    },
+  ];
+  sortBy!: string;
+  onSelectOption(option: string) {
+    this.sortBy = option;
+    this.getAllTasks();
+  }
+  limit!: number;
+  onSelectNumOfItemsInPage(numOfItems: number) {
+    this.limit = numOfItems;
+    this.getAllTasks();
+  }
   constructor(
     private _sharedTaskService: SharedTaskService,
     private _taskService: TaskService
   ) {}
+  onChangePage() {
+    this.page = this.page + 1;
+  }
 
   ngOnInit(): void {
     this.getAllTasks();
   }
   getAllTasks() {
-    this._sharedTaskService.getAllTasks().subscribe(
-      (data) => {
-        this.tasksList = data as any;
-        this.taskCount = this.tasksList.length;
-      },
-      (error: HttpErrorResponse) => {
-        this.messageNoTasks = error.error;
-        this.tasksList = [];
-      }
-    );
+    this._sharedTaskService
+      .getAllTasks(this.page, this.limit, this.sortBy)
+      .subscribe(
+        (tasks) => {
+          console.log('tasks', tasks);
+          this.tasksList = tasks;
+          this.taskCount = this.tasksList.length;
+        },
+        (error: HttpErrorResponse) => {
+          this.messageNoTasks = error.error;
+          this.tasksList = [];
+        }
+      );
   }
-  handleAddingTask(task: any) {
+  handleAddingTask(task: Tasks) {
     const newTasksList = [...this.tasksList];
     newTasksList.push(task);
     this.tasksList = newTasksList;
@@ -45,18 +91,15 @@ export class TodoWrapperComponent implements OnInit {
     this.getAllTasks();
   }
 
-  // onGetCompleteTask(completeTasks: any) {
-  //   console.log(' completed tasks => ', completeTasks);
-  //   this.tasksList = completeTasks;
-  // }
-
   getCompletedTasks() {
-    this._taskService.getCompletedTasks().subscribe((completedTasks: any) => {
-      this.tasksList = completedTasks;
-    });
+    this._taskService
+      .getCompletedTasks()
+      .subscribe((completedTasks: Tasks[]) => {
+        this.tasksList = completedTasks;
+      });
   }
   getActiveTasks() {
-    this._taskService.getActiveTasks().subscribe((activeTasks: any) => {
+    this._taskService.getActiveTasks().subscribe((activeTasks: Tasks[]) => {
       this.tasksList = activeTasks;
     });
   }
@@ -65,25 +108,21 @@ export class TodoWrapperComponent implements OnInit {
     this.modelOpen = !this.modelOpen;
   }
   clearCompletedTasks() {
-    // call end point to delete all completed tasks
-    this._taskService.deleteCompletedTasks().subscribe((data) => {
-      console.log(data);
+    this._taskService.deleteCompletedTasks().subscribe(() => {
       this.getAllTasks();
     });
     this.togglleModelvisibilty();
   }
 
   ongetSearchTerm(term: string) {
-    console.log(' successfly emitted and listen for it  ', term);
     // call get all tasks method to get all tasks that has name with the term
-
     this._sharedTaskService.filterTasks(term).subscribe(
-      (filteredTask: any) => {
-        console.log(filteredTask);
-        this.tasksList = filteredTask;
+      (filteredTasks) => {
+        this.tasksList = filteredTasks;
       },
       ({ error }) => {
-        this.noTasksWithCriteria = error;
+        console.log(error);
+        this.noTasksWithCriteria = 'No Tasks With Given Criteria';
         this.tasksList = [];
       }
     );

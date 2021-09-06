@@ -4,19 +4,35 @@
     <div class="overlay">Login we are waiting for you!!</div>
   </div>
   <div class="right-part">
-    <form class="login-form">
+    <form class="login-form" [formGroup]="formLogin" (ngSubmit)="onLogin()">
       <div class="form-control">
-        <label for="username">username:</label><br />
-        <input type="text" id="username" name="username" /><br />
+        <app-input
+          label="Email"
+          [control]="formLogin.controls.email"
+        ></app-input>
       </div>
       <div class="form-control">
-        <label for="password">password:</label><br />
-        <input type="text" id="password" name="password" />
+        <app-input
+          label="Password"
+          [control]="formLogin.controls.password"
+        ></app-input>
       </div>
 
       <div class="buttons">
-        <button type="submit" class="login-btn">Login</button>
+        <button type="submit" class="login-btn">Login</button> Or
+        <a [routerLink]="['/signup']">signup</a>
       </div>
     </form>
+    <ng-container *ngIf="formLogin.errors">
+      <!-- here we should set errors associated with the form -->
+      <p *ngIf="formLogin.errors.noConnection">
+        it Seems that there is No Internet Connection or Something went Wrong
+      </p>
+      <p *ngIf="formLogin.errors.unKnownError">
+        Something went Wrong !! Please Try Later
+      </p>
+    </ng-container>
   </div>
 </section>
+
+{{ formLogin.errors | json }}

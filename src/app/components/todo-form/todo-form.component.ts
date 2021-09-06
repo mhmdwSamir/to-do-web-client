@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { TaskService } from 'src/app/core/services/task.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { TaskService } from 'src/app/core/services/task.service';
 export class TodoFormComponent implements OnInit {
   @ViewChild('inputTask') input!: ElementRef<HTMLInputElement>;
   @Output() onAddTask = new EventEmitter<any>();
+  @Output() searchTerm = new EventEmitter();
 
   addTaskForm = new FormGroup({
     task: new FormControl('', [
@@ -26,17 +28,17 @@ export class TodoFormComponent implements OnInit {
       Validators.pattern(/^[0-9{2}A-Za-z\s\-]+$/),
     ]),
   });
-  // /[^A-Za-z0-9]+/
   constructor(private taskService: TaskService) {}
-  @Output() searchTerm = new EventEmitter();
+
   ngOnInit(): void {}
 
   addNewTask(taskContent: string) {
     if (taskContent && this.addTaskForm.valid) {
       this.taskService
         .addTask({ content: taskContent })
-        .subscribe((resp: any) => {
-          this.onAddTask.emit(resp.data);
+        .subscribe((response: any) => {
+          console.log(response);
+          this.onAddTask.emit(response.data);
           this.input.nativeElement.value = '';
         });
     }
