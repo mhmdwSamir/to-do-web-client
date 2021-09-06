@@ -1,12 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 interface userCredintial {
   email: string;
   password: string;
 }
 
-export interface loginResponseDTO {
+interface loginResponseDTO {
   user: {
     id: string;
     userName: string;
@@ -19,6 +21,7 @@ export interface loginResponseDTO {
   providedIn: 'root',
 })
 export class AuthService {
+  isLoggedin$ = new BehaviorSubject(false);
   rootUrl = 'http://localhost:3000/api';
 
   constructor(private _http: HttpClient) {}
@@ -32,9 +35,12 @@ export class AuthService {
   }
 
   logIn(userCredintial: userCredintial) {
-    return this._http.post<loginResponseDTO>(
-      this.rootUrl + '/login',
-      userCredintial
-    );
+    return this._http
+      .post<loginResponseDTO>(this.rootUrl + '/login', userCredintial)
+      .pipe(
+        tap(() => {
+          this.isLoggedin$.next(true);
+        })
+      );
   }
 }

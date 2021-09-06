@@ -8,12 +8,14 @@
       <div class="form-control">
         <app-input
           label="Email"
+          inputType="text"
           [control]="formLogin.controls.email"
         ></app-input>
       </div>
       <div class="form-control">
         <app-input
           label="Password"
+          inputType="password"
           [control]="formLogin.controls.password"
         ></app-input>
       </div>
@@ -23,6 +25,7 @@
         <a [routerLink]="['/signup']">signup</a>
       </div>
     </form>
+    <!-- Error Area -->
     <ng-container *ngIf="formLogin.errors">
       <!-- here we should set errors associated with the form -->
       <p *ngIf="formLogin.errors.noConnection">

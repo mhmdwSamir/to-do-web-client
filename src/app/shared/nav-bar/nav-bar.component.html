@@ -6,11 +6,14 @@
 
   <div class="linksWrapper">
     <a href="#" class="nav-link"> home </a>
-    <a [routerLink]="'/login'" class="nav-link"> Login </a>
-    <a [routerLink]="'/signup'" class="nav-link"> Sign Up </a>
+    <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <a [routerLink]="'/login'" class="nav-link"> Login </a>
+      <a [routerLink]="'/signup'" class="nav-link"> Sign Up </a>
+    </ng-container>
   </div>
-
-  <button type="button" (click)="logOutUser()">logout</button>
+  <ng-container *ngIf="isLoggedIn$ | async">
+    <button type="button" (click)="logOutUser()">logout</button>
+  </ng-container>
 
   <div class="nav-info">
     <div class="nav-info-setting">
